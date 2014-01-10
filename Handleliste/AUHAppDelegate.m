@@ -7,14 +7,32 @@
 //
 
 #import "AUHAppDelegate.h"
+#import "AUHListViewController.h"
 
 @implementation AUHAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    
+    // Initialize List View Controller
+    AUHListViewController *listViewController = [[AUHListViewController alloc] init];
+    
+    // Initialize Navigation Controller
+    UINavigationController *listNavigationController = [[UINavigationController alloc] initWithRootViewController:listViewController];
+    
+    // Initialize Tab Bar Controller
+    UITabBarController *tabBarController = [[UITabBarController alloc] init];
+    
+    // Configure Tab Bar Controller
+    [tabBarController setViewControllers:@[listNavigationController]];
+    
+    // initialize window
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
-    self.window.backgroundColor = [UIColor whiteColor];
+    
+    // configre window
+    [self.window setRootViewController:tabBarController];
+    [self.window setBackgroundColor:[UIColor whiteColor]];
     [self.window makeKeyAndVisible];
     return YES;
 }

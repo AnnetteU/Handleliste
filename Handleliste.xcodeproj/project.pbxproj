@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CA943AF618802AAE0059BF38 /* AUHListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA943AF518802AAE0059BF38 /* AUHListViewController.m */; };
+		CA943AF918802D4E0059BF38 /* AUHItem.m in Sources */ = {isa = PBXBuildFile; fileRef = CA943AF818802D4E0059BF38 /* AUHItem.m */; };
 		CAB3B98F18801E61002293B6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAB3B98E18801E61002293B6 /* Foundation.framework */; };
 		CAB3B99118801E61002293B6 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAB3B99018801E61002293B6 /* CoreGraphics.framework */; };
 		CAB3B99318801E61002293B6 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAB3B99218801E61002293B6 /* UIKit.framework */; };
@@ -32,6 +34,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		CA943AF418802AAE0059BF38 /* AUHListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AUHListViewController.h; sourceTree = "<group>"; };
+		CA943AF518802AAE0059BF38 /* AUHListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AUHListViewController.m; sourceTree = "<group>"; };
+		CA943AF718802D4E0059BF38 /* AUHItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AUHItem.h; sourceTree = "<group>"; };
+		CA943AF818802D4E0059BF38 /* AUHItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AUHItem.m; sourceTree = "<group>"; };
 		CAB3B98B18801E61002293B6 /* Handleliste.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Handleliste.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CAB3B98E18801E61002293B6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		CAB3B99018801E61002293B6 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -109,8 +115,12 @@
 			children = (
 				CAB3B99D18801E61002293B6 /* AUHAppDelegate.h */,
 				CAB3B99E18801E61002293B6 /* AUHAppDelegate.m */,
+				CA943AF718802D4E0059BF38 /* AUHItem.h */,
+				CA943AF818802D4E0059BF38 /* AUHItem.m */,
 				CAB3B9A018801E61002293B6 /* Images.xcassets */,
 				CAB3B99518801E61002293B6 /* Supporting Files */,
+				CA943AF418802AAE0059BF38 /* AUHListViewController.h */,
+				CA943AF518802AAE0059BF38 /* AUHListViewController.m */,
 			);
 			path = Handleliste;
 			sourceTree = "<group>";
@@ -240,6 +250,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CA943AF618802AAE0059BF38 /* AUHListViewController.m in Sources */,
+				CA943AF918802D4E0059BF38 /* AUHItem.m in Sources */,
 				CAB3B99B18801E61002293B6 /* main.m in Sources */,
 				CAB3B99F18801E61002293B6 /* AUHAppDelegate.m in Sources */,
 			);
@@ -442,6 +454,7 @@
 				CAB3B9B918801E61002293B6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		CAB3B9BA18801E61002293B6 /* Build configuration list for PBXNativeTarget "HandlelisteTests" */ = {
 			isa = XCConfigurationList;
@@ -450,6 +463,7 @@
 				CAB3B9BC18801E61002293B6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
