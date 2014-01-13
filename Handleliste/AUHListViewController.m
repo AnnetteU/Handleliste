@@ -7,25 +7,48 @@
 //
 
 #import "AUHListViewController.h"
+#import "AUHItem.h"
+#import "AUHAddItemViewController.h"
 
 @interface AUHListViewController ()
+
+@property NSMutableArray *items;
 
 @end
 
 @implementation AUHListViewController
 
+#pragma mark -
+#pragma mark Initialization
+/**
+ initWithStyle
+ */
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
     if (self) {
         // Custom initialization
+        // set title
+        self.title = @"Handleliste";
+        
+        // load items
+        [self loadItems];
     }
     return self;
 }
 
-- (void)viewDidLoad
-{
+#pragma mark -
+#pragma mark View Life Cycle
+/**
+ viewDidLoad
+ */
+- (void)viewDidLoad{
     [super viewDidLoad];
+    
+    // create add button
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]
+                                             initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
+                                             target:self action:@selector(addItem:)];
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -34,35 +57,48 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
-- (void)didReceiveMemoryWarning
-{
+- (void)didReceiveMemoryWarning{
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - Table view data source
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-#warning Potentially incomplete method implementation.
+#pragma mark -
+#pragma mark Table View Data Source Methods
+
+/**
+ numberOfSectionsInTableView
+ */
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     // Return the number of sections.
-    return 0;
+    return 1;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-#warning Incomplete method implementation.
+/**
+ numberOfRowsInSection
+ */
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+
     // Return the number of rows in the section.
-    return 0;
+    return [self.items count];
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    static NSString *CellIdentifier = @"Cell";
+/**
+ cellForRowAtIndexPath
+ */
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+//    static NSString *CellIdentifier = @"Cell";
+//    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    
+    static NSString *CellIdentifier = @"Cell Identifier";
+    [tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:CellIdentifier];
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
-    // Configure the cell...
+    // fetch item
+    AUHItem *item = [self.items objectAtIndex:[indexPath row]];
     
+    // configure cell
+    [cell.textLabel setText:[item Name]];
     return cell;
 }
 
@@ -116,5 +152,63 @@
 }
 
  */
+
+
+#pragma mark -
+#pragma mark Helper Methods
+/**
+ loadItems
+ */
+- (void)loadItems{
+    NSString *filePath = [self pathForItems];
+    if ([[NSFileManager defaultManager] fileExistsAtPath:filePath]){
+        self.items = [NSKeyedUnarchiver unarchiveObjectWithFile:filePath];
+    }
+    else{
+        self.items = [NSMutableArray array];
+    }
+    
+}
+
+/**
+ pathForItems
+ */
+- (NSString *)pathForItems{
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documents = [paths lastObject];
+    return [documents stringByAppendingPathComponent:@"items.plist"];
+}
+
+/**
+ saveItems
+ */
+- (void)saveItems{
+    NSString *filePath = [self pathForItems];
+    [NSKeyedArchiver archiveRootObject:self.items toFile:filePath];
+}
+
+/**
+ addItem
+ */
+- (void)addItem:(id)sender{
+    
+    // initialize add item view controller
+    AUHAddItemViewController *addItemViewController = [[AUHAddItemViewController alloc] initWithNibName:@"AUHAddItemViewController" bundle:nil];
+    
+    // present view controller
+    [self presentViewController:addItemViewController animated:YES completion:nil];
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 @end

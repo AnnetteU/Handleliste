@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		CA943AF618802AAE0059BF38 /* AUHListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA943AF518802AAE0059BF38 /* AUHListViewController.m */; };
 		CA943AF918802D4E0059BF38 /* AUHItem.m in Sources */ = {isa = PBXBuildFile; fileRef = CA943AF818802D4E0059BF38 /* AUHItem.m */; };
+		CA943AFB1883EFB00059BF38 /* seed.plist in Resources */ = {isa = PBXBuildFile; fileRef = CA943AFA1883EFB00059BF38 /* seed.plist */; };
+		CA943AFF18840ECA0059BF38 /* AUHAddItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA943AFD18840ECA0059BF38 /* AUHAddItemViewController.m */; };
+		CA943B0018840ECA0059BF38 /* AUHAddItemViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA943AFE18840ECA0059BF38 /* AUHAddItemViewController.xib */; };
 		CAB3B98F18801E61002293B6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAB3B98E18801E61002293B6 /* Foundation.framework */; };
 		CAB3B99118801E61002293B6 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAB3B99018801E61002293B6 /* CoreGraphics.framework */; };
 		CAB3B99318801E61002293B6 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAB3B99218801E61002293B6 /* UIKit.framework */; };
@@ -38,6 +41,10 @@
 		CA943AF518802AAE0059BF38 /* AUHListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AUHListViewController.m; sourceTree = "<group>"; };
 		CA943AF718802D4E0059BF38 /* AUHItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AUHItem.h; sourceTree = "<group>"; };
 		CA943AF818802D4E0059BF38 /* AUHItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AUHItem.m; sourceTree = "<group>"; };
+		CA943AFA1883EFB00059BF38 /* seed.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = seed.plist; sourceTree = "<group>"; };
+		CA943AFC18840ECA0059BF38 /* AUHAddItemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AUHAddItemViewController.h; sourceTree = "<group>"; };
+		CA943AFD18840ECA0059BF38 /* AUHAddItemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AUHAddItemViewController.m; sourceTree = "<group>"; };
+		CA943AFE18840ECA0059BF38 /* AUHAddItemViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AUHAddItemViewController.xib; sourceTree = "<group>"; };
 		CAB3B98B18801E61002293B6 /* Handleliste.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Handleliste.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CAB3B98E18801E61002293B6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		CAB3B99018801E61002293B6 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -115,12 +122,16 @@
 			children = (
 				CAB3B99D18801E61002293B6 /* AUHAppDelegate.h */,
 				CAB3B99E18801E61002293B6 /* AUHAppDelegate.m */,
+				CA943AFA1883EFB00059BF38 /* seed.plist */,
 				CA943AF718802D4E0059BF38 /* AUHItem.h */,
 				CA943AF818802D4E0059BF38 /* AUHItem.m */,
 				CAB3B9A018801E61002293B6 /* Images.xcassets */,
 				CAB3B99518801E61002293B6 /* Supporting Files */,
 				CA943AF418802AAE0059BF38 /* AUHListViewController.h */,
 				CA943AF518802AAE0059BF38 /* AUHListViewController.m */,
+				CA943AFC18840ECA0059BF38 /* AUHAddItemViewController.h */,
+				CA943AFD18840ECA0059BF38 /* AUHAddItemViewController.m */,
+				CA943AFE18840ECA0059BF38 /* AUHAddItemViewController.xib */,
 			);
 			path = Handleliste;
 			sourceTree = "<group>";
@@ -230,7 +241,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CA943AFB1883EFB00059BF38 /* seed.plist in Resources */,
 				CAB3B99918801E61002293B6 /* InfoPlist.strings in Resources */,
+				CA943B0018840ECA0059BF38 /* AUHAddItemViewController.xib in Resources */,
 				CAB3B9A118801E61002293B6 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -253,6 +266,7 @@
 				CA943AF618802AAE0059BF38 /* AUHListViewController.m in Sources */,
 				CA943AF918802D4E0059BF38 /* AUHItem.m in Sources */,
 				CAB3B99B18801E61002293B6 /* main.m in Sources */,
+				CA943AFF18840ECA0059BF38 /* AUHAddItemViewController.m in Sources */,
 				CAB3B99F18801E61002293B6 /* AUHAppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
