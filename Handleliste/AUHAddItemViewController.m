@@ -62,8 +62,25 @@
  save
  */
 - (IBAction)save:(id)sender{
+    
+    // extract user input
+    NSString *name = [self.nameTextField text];
+    
+    // notify delegate
+    [self.delegate controller:self didSaveItemWithName:name];
+    
+    // dismiss the view contoller
     [self dismissViewControllerAnimated:YES completion:nil];
 }
+
+
+
+
+
+
+
+
+
 
 
 

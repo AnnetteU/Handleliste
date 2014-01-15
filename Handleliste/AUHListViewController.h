@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AUHAddItemViewController.h"
 
-@interface AUHListViewController : UITableViewController
+@interface AUHListViewController : UITableViewController<AUHAddItemViewControllerDelegate>
 
 @end

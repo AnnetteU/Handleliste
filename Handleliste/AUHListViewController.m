@@ -8,7 +8,6 @@
 
 #import "AUHListViewController.h"
 #import "AUHItem.h"
-#import "AUHAddItemViewController.h"
 
 @interface AUHListViewController ()
 
@@ -49,12 +48,14 @@
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]
                                              initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
                                              target:self action:@selector(addItem:)];
+    
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]
+                                              initWithBarButtonSystemItem:UIBarButtonSystemItemEdit
+                                              target:self action:@selector(editItems:)];
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+
 }
 
 - (void)didReceiveMemoryWarning{
@@ -155,6 +156,53 @@
 
 
 #pragma mark -
+#pragma mark Add Item View Controller Delegate Methods
+/**
+ controller didSaveItemWithName
+ */
+- (void)controller:(AUHAddItemViewController *)controller didSaveItemWithName:(NSString *)name{
+    
+    // create item
+    AUHItem *item = [AUHItem createItemWithName:name];
+    
+    // add item to data source
+    [self.items addObject:item];
+    
+    // add row to the table view
+    NSIndexPath *newIndexPath = [NSIndexPath indexPathForItem:([self.items count] - 1) inSection:0];
+    [self.tableView insertRowsAtIndexPaths:@[newIndexPath] withRowAnimation:UITableViewRowAnimationNone];
+    
+    // save items
+    [self saveItems];
+    
+}
+
+#pragma mark -
+#pragma mark Actions
+/**
+ addItem
+ */
+- (void)addItem:(id)sender{
+    
+    // initialize add item view controller
+    AUHAddItemViewController *addItemViewController = [[AUHAddItemViewController alloc] initWithNibName:@"AUHAddItemViewController" bundle:nil];
+    
+    // set delegate
+    [addItemViewController setDelegate:self];
+    
+    // present view controller
+    [self presentViewController:addItemViewController animated:YES completion:nil];
+}
+
+/**
+ editItem
+ */
+- (void)editItem:(id)sender{
+    [self.tableView setEditing:![self.tableView isEditing] animated:YES];
+}
+
+
+#pragma mark -
 #pragma mark Helper Methods
 /**
  loadItems
@@ -187,17 +235,7 @@
     [NSKeyedArchiver archiveRootObject:self.items toFile:filePath];
 }
 
-/**
- addItem
- */
-- (void)addItem:(id)sender{
-    
-    // initialize add item view controller
-    AUHAddItemViewController *addItemViewController = [[AUHAddItemViewController alloc] initWithNibName:@"AUHAddItemViewController" bundle:nil];
-    
-    // present view controller
-    [self presentViewController:addItemViewController animated:YES completion:nil];
-}
+
 
 
 
