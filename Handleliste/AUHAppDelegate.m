@@ -8,6 +8,7 @@
 
 #import "AUHAppDelegate.h"
 
+#import "AUHShoppingListViewController.h"
 #import "AUHListViewController.h"
 #import "AUHItem.h"
 
@@ -24,11 +25,17 @@
     // Initialize Navigation Controller
     UINavigationController *listNavigationController = [[UINavigationController alloc] initWithRootViewController:listViewController];
     
+    // Initiliaze Shopping List View Controller
+    AUHShoppingListViewController *shoppingListViewController = [[AUHShoppingListViewController alloc] init];
+    
+    // Initialize Navigation Controller
+    UINavigationController *shoppingListNavigationController = [[UINavigationController alloc] initWithRootViewController:shoppingListViewController];
+    
     // Initialize Tab Bar Controller
     UITabBarController *tabBarController = [[UITabBarController alloc] init];
     
     // Configure Tab Bar Controller
-    [tabBarController setViewControllers:@[listNavigationController]];
+    [tabBarController setViewControllers:@[listNavigationController, shoppingListViewController]];
     
     // initialize window
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];

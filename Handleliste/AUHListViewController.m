@@ -45,13 +45,17 @@
     [super viewDidLoad];
     
     // create add button
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]
-                                             initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
-                                             target:self action:@selector(addItem:)];
+    UIBarButtonItem *leftbarButtonItem = [[UIBarButtonItem alloc]
+                                         initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
+                                         target:self action:@selector(addItem:)];
+    [[self navigationItem] setLeftBarButtonItem:leftbarButtonItem];
     
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]
+    
+    UIBarButtonItem *rightBarButtonItem = [[UIBarButtonItem alloc]
                                               initWithBarButtonSystemItem:UIBarButtonSystemItemEdit
                                               target:self action:@selector(editItems:)];
+    [[self navigationItem] setRightBarButtonItem:rightBarButtonItem];
+    
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -81,50 +85,76 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
 
     // Return the number of rows in the section.
-    return [self.items count];
+    return [[self items] count];
 }
 
 /**
  cellForRowAtIndexPath
  */
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-//    static NSString *CellIdentifier = @"Cell";
-//    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
     static NSString *CellIdentifier = @"Cell Identifier";
     [tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:CellIdentifier];
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
     // fetch item
-    AUHItem *item = [self.items objectAtIndex:[indexPath row]];
+    AUHItem *item = [[self items] objectAtIndex:[indexPath row]];
     
     // configure cell
-    [cell.textLabel setText:[item Name]];
+    [[cell textLabel] setText:[item Name]];
+    [cell setAccessoryType:UITableViewCellAccessoryDetailDisclosureButton];
     return cell;
 }
 
-/*
+
 // Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
+/**
+ tableView canEditRowAtIndexPath
+ */
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath{
     // Return NO if you do not want the specified item to be editable.
     return YES;
 }
-*/
 
-/*
+
+
 // Override to support editing the table view.
+/**
+ tableView commitEditingStyle forRowAtIndexPath
+ */
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        
+        // delete item from items
+        [[self items] removeObjectAtIndex:[indexPath row]];
+        
+        // update the table view
+        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationRight];
+        
+        // save changes to disk
+        [self saveItems];
     }   
     else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
     }   
 }
-*/
+
+/**
+ tableView accessoryButtonTappedForRowWithIndexPath
+ */
+- (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath {
+    
+    // fetch item
+    AUHItem *item = [[self items] objectAtIndex:[indexPath row]];
+    
+    // initialize Edit Item View Controller
+    AUHEditItemViewController *editItemViewController = [[AUHEditItemViewController alloc] initWithItem:item andDelegate:self];
+    
+    // push View Controller onto navigation stack
+    [[self navigationController] pushViewController:editItemViewController animated:YES];
+}
+
 
 /*
 // Override to support rearranging the table view.
@@ -166,16 +196,37 @@
     AUHItem *item = [AUHItem createItemWithName:name];
     
     // add item to data source
-    [self.items addObject:item];
+    [[self items] addObject:item];
     
     // add row to the table view
     NSIndexPath *newIndexPath = [NSIndexPath indexPathForItem:([self.items count] - 1) inSection:0];
-    [self.tableView insertRowsAtIndexPaths:@[newIndexPath] withRowAnimation:UITableViewRowAnimationNone];
+    [[self tableView] insertRowsAtIndexPaths:@[newIndexPath] withRowAnimation:UITableViewRowAnimationNone];
     
     // save items
     [self saveItems];
     
 }
+
+/**
+ controller didUpdateItem
+ */
+- (void)controller:(AUHEditItemViewController *)controller didUpdateItem:(AUHItem *)item{
+    
+    // fetch item
+    for (int i = 0; i < [[self items] count]; i++){
+        AUHItem *theItem = [[self items] objectAtIndex:i];
+        if ([[theItem uuid] isEqualToString:[item uuid]]){
+            
+            // update table view row
+            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:i inSection:0];
+            [[self tableView] reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        }
+    }
+    
+    // save items
+    [self saveItems];
+}
+
 
 #pragma mark -
 #pragma mark Actions
@@ -197,8 +248,8 @@
 /**
  editItem
  */
-- (void)editItem:(id)sender{
-    [self.tableView setEditing:![self.tableView isEditing] animated:YES];
+- (void)editItems:(id)sender{
+    [[self tableView] setEditing:![[self tableView] isEditing] animated:YES];
 }
 
 
