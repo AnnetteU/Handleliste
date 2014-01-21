@@ -140,6 +140,33 @@
     }   
 }
 
+#pragma mark -
+#pragma mark Table View Delegate Methods
+/**
+ tableView didSelectRowAtIndexPath
+ */
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    // Fetch Item
+    AUHItem *item = [[self items] objectAtIndex:[indexPath row]];
+    
+    // Update Item
+    [item setInShoppingList:![item inShoppingList]];
+    
+    // Update Cell
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    
+    if ([item inShoppingList]) {
+        [[cell imageView] setImage:[UIImage imageNamed:@"checkmark"]];
+    } else {
+        [[cell imageView] setImage:nil];
+    }
+    
+    // Save Items
+    [self saveItems];
+}
+
 /**
  tableView accessoryButtonTappedForRowWithIndexPath
  */
@@ -163,26 +190,13 @@
 }
 */
 
-/*
+
 // Override to support conditional rearranging of the table view.
 - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Return NO if you do not want the item to be re-orderable.
     return YES;
 }
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a story board-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-
- */
 
 
 #pragma mark -

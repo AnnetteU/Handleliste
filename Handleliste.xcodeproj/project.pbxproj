@@ -15,6 +15,8 @@
 		CA943B041887C5E50059BF38 /* AUHEditItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA943B021887C5E50059BF38 /* AUHEditItemViewController.m */; };
 		CA943B051887C5E50059BF38 /* AUHEditItemViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA943B031887C5E50059BF38 /* AUHEditItemViewController.xib */; };
 		CA943B08188C78880059BF38 /* AUHShoppingListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA943B07188C78880059BF38 /* AUHShoppingListViewController.m */; };
+		CA943B0C188E8D0A0059BF38 /* checkmark.png in Resources */ = {isa = PBXBuildFile; fileRef = CA943B0A188E8D0A0059BF38 /* checkmark.png */; };
+		CA943B0D188E8D0A0059BF38 /* checkmark@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA943B0B188E8D0A0059BF38 /* checkmark@2x.png */; };
 		CAB3B98F18801E61002293B6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAB3B98E18801E61002293B6 /* Foundation.framework */; };
 		CAB3B99118801E61002293B6 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAB3B99018801E61002293B6 /* CoreGraphics.framework */; };
 		CAB3B99318801E61002293B6 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAB3B99218801E61002293B6 /* UIKit.framework */; };
@@ -53,6 +55,8 @@
 		CA943B031887C5E50059BF38 /* AUHEditItemViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AUHEditItemViewController.xib; sourceTree = "<group>"; };
 		CA943B06188C78880059BF38 /* AUHShoppingListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AUHShoppingListViewController.h; sourceTree = "<group>"; };
 		CA943B07188C78880059BF38 /* AUHShoppingListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AUHShoppingListViewController.m; sourceTree = "<group>"; };
+		CA943B0A188E8D0A0059BF38 /* checkmark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checkmark.png; sourceTree = "<group>"; };
+		CA943B0B188E8D0A0059BF38 /* checkmark@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "checkmark@2x.png"; sourceTree = "<group>"; };
 		CAB3B98B18801E61002293B6 /* Handleliste.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Handleliste.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CAB3B98E18801E61002293B6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		CAB3B99018801E61002293B6 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -95,6 +99,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CA943B09188E8D0A0059BF38 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				CA943B0A188E8D0A0059BF38 /* checkmark.png */,
+				CA943B0B188E8D0A0059BF38 /* checkmark@2x.png */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		CAB3B98218801E61002293B6 = {
 			isa = PBXGroup;
 			children = (
@@ -128,6 +141,7 @@
 		CAB3B99418801E61002293B6 /* Handleliste */ = {
 			isa = PBXGroup;
 			children = (
+				CA943B09188E8D0A0059BF38 /* Resources */,
 				CAB3B99D18801E61002293B6 /* AUHAppDelegate.h */,
 				CAB3B99E18801E61002293B6 /* AUHAppDelegate.m */,
 				CA943AFA1883EFB00059BF38 /* seed.plist */,
@@ -259,6 +273,8 @@
 				CAB3B99918801E61002293B6 /* InfoPlist.strings in Resources */,
 				CA943B0018840ECA0059BF38 /* AUHAddItemViewController.xib in Resources */,
 				CAB3B9A118801E61002293B6 /* Images.xcassets in Resources */,
+				CA943B0C188E8D0A0059BF38 /* checkmark.png in Resources */,
+				CA943B0D188E8D0A0059BF38 /* checkmark@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

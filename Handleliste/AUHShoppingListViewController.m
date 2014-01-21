@@ -23,8 +23,7 @@
 /**
  initWithStyle
  */
-- (id)initWithStyle:(UITableViewStyle)style
-{
+- (id)initWithStyle:(UITableViewStyle)style{
     self = [super initWithStyle:style];
     if (self) {
         
@@ -33,6 +32,10 @@
         
         // load items
         [self loadItems];
+        
+        // add observer
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateShoppingList:)
+                                                     name:@"AUHShoppingListDidChangeNotification" object:nil];
     }
     return self;
 }
@@ -43,22 +46,14 @@
 /**
  viewDidLoad
  */
-- (void)viewDidLoad
-{
+- (void)viewDidLoad{
     [super viewDidLoad];
-
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
 /**
  didReceiveMemoryWarning
  */
-- (void)didReceiveMemoryWarning
-{
+- (void)didReceiveMemoryWarning{
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
@@ -121,9 +116,30 @@
     
     // configure cell
     [[cell textLabel] setText:[item Name]];
+    [cell setAccessoryType:UITableViewCellAccessoryDetailDisclosureButton];
+    
+    // show/hide checkmark
+    if ([item inShoppingList]){
+        [[cell imageView] setImage:[UIImage imageNamed:@"checkmark"]];
+    }
+    else{
+        [[cell imageView] setImage:nil];
+    }
     
     return cell;
 }
+
+/**
+ tableView didSelectRowAtIndexPath
+ */
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{}
+
+#pragma mark -
+#pragma mark Notification Handling
+- (void)updateShoppingList:(NSNotification *)notification{
+    [self loadItems];
+}
+
 
 #pragma mark -
 #pragma mark Helper methods
@@ -138,6 +154,18 @@
     else{
         self.items = [NSMutableArray array];
     }
+}
+
+/**
+ saveItems
+ */
+- (void)saveItems{
+
+    NSString *filePath = [self pathForItems];
+    [NSKeyedArchiver archiveRootObject:[self items] toFile:filePath];
+    
+    // post notification
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"AUHShoppingListDidChangeNotification" object:self];
 }
 
 /**

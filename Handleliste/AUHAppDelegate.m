@@ -35,7 +35,7 @@
     UITabBarController *tabBarController = [[UITabBarController alloc] init];
     
     // Configure Tab Bar Controller
-    [tabBarController setViewControllers:@[listNavigationController, shoppingListViewController]];
+    [tabBarController setViewControllers:@[listNavigationController, shoppingListNavigationController]];
     
     // initialize window
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
