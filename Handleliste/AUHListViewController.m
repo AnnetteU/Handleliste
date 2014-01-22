@@ -103,6 +103,15 @@
     // configure cell
     [[cell textLabel] setText:[item Name]];
     [cell setAccessoryType:UITableViewCellAccessoryDetailDisclosureButton];
+    
+    // show/hide checkmark
+    if ([item inShoppingList]){
+        [[cell imageView] setImage:[UIImage imageNamed:@"checkmark"]];
+    }
+    else{
+        [[cell imageView] setImage:nil];
+    }
+    
     return cell;
 }
 
@@ -146,6 +155,7 @@
  tableView didSelectRowAtIndexPath
  */
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     // Fetch Item
@@ -221,6 +231,8 @@
     
 }
 
+#pragma mark -
+#pragma mark Edit Item View Controller Delegate methods
 /**
  controller didUpdateItem
  */
@@ -228,8 +240,8 @@
     
     // fetch item
     for (int i = 0; i < [[self items] count]; i++){
-        AUHItem *theItem = [[self items] objectAtIndex:i];
-        if ([[theItem uuid] isEqualToString:[item uuid]]){
+        AUHItem *updateItem = [[self items] objectAtIndex:i];
+        if ([[updateItem uuid] isEqualToString:[item uuid]]){
             
             // update table view row
             NSIndexPath *indexPath = [NSIndexPath indexPathForRow:i inSection:0];
@@ -266,6 +278,18 @@
     [[self tableView] setEditing:![[self tableView] isEditing] animated:YES];
 }
 
+/**
+ saveItems
+ */
+- (void)saveItems{
+    
+    NSString *filePath = [self pathForItems];
+    [NSKeyedArchiver archiveRootObject:[self items] toFile:filePath];
+    
+    // post notification
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"AUHShoppingListDidChangeNotification" object:self];
+}
+
 
 #pragma mark -
 #pragma mark Helper Methods
@@ -292,13 +316,6 @@
     return [documents stringByAppendingPathComponent:@"items.plist"];
 }
 
-/**
- saveItems
- */
-- (void)saveItems{
-    NSString *filePath = [self pathForItems];
-    [NSKeyedArchiver archiveRootObject:self.items toFile:filePath];
-}
 
 
 

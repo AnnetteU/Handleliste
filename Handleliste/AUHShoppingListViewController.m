@@ -116,15 +116,6 @@
     
     // configure cell
     [[cell textLabel] setText:[item Name]];
-    [cell setAccessoryType:UITableViewCellAccessoryDetailDisclosureButton];
-    
-    // show/hide checkmark
-    if ([item inShoppingList]){
-        [[cell imageView] setImage:[UIImage imageNamed:@"checkmark"]];
-    }
-    else{
-        [[cell imageView] setImage:nil];
-    }
     
     return cell;
 }
@@ -157,18 +148,6 @@
 }
 
 /**
- saveItems
- */
-- (void)saveItems{
-
-    NSString *filePath = [self pathForItems];
-    [NSKeyedArchiver archiveRootObject:[self items] toFile:filePath];
-    
-    // post notification
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"AUHShoppingListDidChangeNotification" object:self];
-}
-
-/**
  buildShoppingList
  */
 - (void)buildShoppingList{
@@ -195,11 +174,6 @@
     NSString *documents = [paths lastObject];
     return [documents stringByAppendingString:@"items.plist"];
 }
-
-
-
-
-
 
 
 
