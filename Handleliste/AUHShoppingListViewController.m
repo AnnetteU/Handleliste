@@ -28,7 +28,7 @@
     if (self) {
         
         // set title
-        [self setTitle:@"Handleliste liste"];
+        [self setTitle:@"Handleliste handlet"];
         
         // load items
         [self loadItems];
@@ -164,6 +164,7 @@
     
     // set shopping list
     self.shoppingList = [NSArray arrayWithArray:buffer];
+    [[UIApplication sharedApplication] setApplicationIconBadgeNumber:[[self items] count] - [[self shoppingList] count]];
 }
 
 /**

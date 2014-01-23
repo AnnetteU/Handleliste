@@ -281,6 +281,8 @@
     
     // post notification
     [[NSNotificationCenter defaultCenter] postNotificationName:@"AUHShoppingListDidChangeNotification" object:self];
+    
+    //[[UIApplication sharedApplication] setApplicationIconBadgeNumber:[[self items] count]];
 }
 
 
