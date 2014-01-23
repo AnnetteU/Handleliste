@@ -55,10 +55,6 @@
                                               initWithBarButtonSystemItem:UIBarButtonSystemItemEdit
                                               target:self action:@selector(editItems:)];
     [[self navigationItem] setRightBarButtonItem:rightBarButtonItem];
-    
-
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
 
 }
 
@@ -143,10 +139,7 @@
         
         // save changes to disk
         [self saveItems];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
+    }
 }
 
 #pragma mark -

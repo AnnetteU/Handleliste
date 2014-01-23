@@ -28,7 +28,7 @@
     if (self) {
         
         // set title
-        [self setTitle:@"Legg til fra liste"];
+        [self setTitle:@"Handleliste liste"];
         
         // load items
         [self loadItems];
@@ -172,7 +172,7 @@
 - (NSString *)pathForItems{
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documents = [paths lastObject];
-    return [documents stringByAppendingString:@"items.plist"];
+    return [documents stringByAppendingPathComponent:@"items.plist"];
 }
 
 

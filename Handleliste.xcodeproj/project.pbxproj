@@ -57,6 +57,7 @@
 		CA943B07188C78880059BF38 /* AUHShoppingListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AUHShoppingListViewController.m; sourceTree = "<group>"; };
 		CA943B0A188E8D0A0059BF38 /* checkmark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checkmark.png; sourceTree = "<group>"; };
 		CA943B0B188E8D0A0059BF38 /* checkmark@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "checkmark@2x.png"; sourceTree = "<group>"; };
+		CA943B1218911BC60059BF38 /* Shoppinglist@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Shoppinglist@2x.png"; path = "Handleliste/Shoppinglist@2x.png"; sourceTree = "<group>"; };
 		CAB3B98B18801E61002293B6 /* Handleliste.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Handleliste.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CAB3B98E18801E61002293B6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		CAB3B99018801E61002293B6 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -111,6 +112,7 @@
 		CAB3B98218801E61002293B6 = {
 			isa = PBXGroup;
 			children = (
+				CA943B1218911BC60059BF38 /* Shoppinglist@2x.png */,
 				CAB3B99418801E61002293B6 /* Handleliste */,
 				CAB3B9AD18801E61002293B6 /* HandlelisteTests */,
 				CAB3B98D18801E61002293B6 /* Frameworks */,

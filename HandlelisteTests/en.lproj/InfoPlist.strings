@@ -1,2 +1,7 @@
 /* Localized versions of Info.plist keys */
-
+<key>CFBundleIconFiles</key>
+<array>
+<string>Shoppinglist@2x.png</string>
+<string>LaunchImage.png</string>
+<string>LaunchImage-1.png</string>
+</array>
