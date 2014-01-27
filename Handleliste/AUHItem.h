@@ -10,10 +10,11 @@
 
 @interface AUHItem : NSObject<NSCoding>
 
-+ (AUHItem *)createItemWithName:(NSString *)name;
++ (AUHItem *)createItemWithName:(NSString *)name andShop:(NSString *)shop;
 
 @property NSString *uuid;
 @property NSString *Name;
+@property NSString *Shop;
 @property BOOL isChecked;
 @property BOOL inShoppingList;
 

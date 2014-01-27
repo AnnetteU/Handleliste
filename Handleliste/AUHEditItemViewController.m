@@ -68,6 +68,15 @@
     }
 }
 
+/**
+ viewDidAppear
+ */
+- (void)viewDidAppear:(BOOL)animated{
+    
+    // set cursor focus in textfield
+    [[self nameTextField] becomeFirstResponder];
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

@@ -14,6 +14,7 @@
 @interface AUHEditItemViewController : UIViewController
 
 @property IBOutlet UITextField *nameTextField;
+@property IBOutlet UITextField *shopTextField;
 
 #pragma mark -
 #pragma mark Initialization

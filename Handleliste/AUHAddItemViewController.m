@@ -41,6 +41,15 @@
 }
 
 /**
+ viewDidAppear
+ */
+- (void)viewDidAppear:(BOOL)animated{
+    
+    // set cursor focus in textfield
+    [[self nameTextField] becomeFirstResponder];
+}
+
+/**
  didReceiveMemoryWarning
  */
 - (void)didReceiveMemoryWarning
@@ -65,10 +74,11 @@
 - (IBAction)save:(id)sender{
     
     // extract user input
-    NSString *name = [self.nameTextField text];
+    NSString *name = [[self nameTextField] text];
+    NSString *shop = [[self shopTextField] text];
     
     // notify delegate
-    [[self delegate] controller:self didSaveItemWithName:name];
+    [[self delegate] controller:self didSaveItemWithName:name andShop:shop];
     
     // dismiss the view contoller
     [self dismissViewControllerAnimated:YES completion:nil];

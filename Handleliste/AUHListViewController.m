@@ -8,6 +8,7 @@
 
 #import "AUHListViewController.h"
 #import "AUHItem.h"
+#import "AUHConstants.h"
 
 @interface AUHListViewController ()
 
@@ -44,17 +45,17 @@
 - (void)viewDidLoad{
     [super viewDidLoad];
     
+    // edit button
+    [[self navigationItem] setLeftBarButtonItem:[self editButtonItem]];
+    
     // create add button
-    UIBarButtonItem *leftbarButtonItem = [[UIBarButtonItem alloc]
+    UIBarButtonItem *rightbarButtonItem = [[UIBarButtonItem alloc]
                                          initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
                                          target:self action:@selector(addItem:)];
-    [[self navigationItem] setLeftBarButtonItem:leftbarButtonItem];
+    [[self navigationItem] setRightBarButtonItem:rightbarButtonItem];
     
-    
-    UIBarButtonItem *rightBarButtonItem = [[UIBarButtonItem alloc]
-                                              initWithBarButtonSystemItem:UIBarButtonSystemItemEdit
-                                              target:self action:@selector(editItems:)];
-    [[self navigationItem] setRightBarButtonItem:rightBarButtonItem];
+    // register reusable cell identifer for the table view
+    [[self tableView] registerClass:[UITableViewCell class] forCellReuseIdentifier:UITableViewCellIdentifier];
 
 }
 
@@ -88,10 +89,9 @@
  cellForRowAtIndexPath
  */
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    
-    static NSString *CellIdentifier = @"Cell Identifier";
-    [tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:CellIdentifier];
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+
+    // get reusable cell identifier
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:UITableViewCellIdentifier forIndexPath:indexPath];
     
     // fetch item
     AUHItem *item = [[self items] objectAtIndex:[indexPath row]];
@@ -207,10 +207,10 @@
 /**
  controller didSaveItemWithName
  */
-- (void)controller:(AUHAddItemViewController *)controller didSaveItemWithName:(NSString *)name{
+- (void)controller:(AUHAddItemViewController *)controller didSaveItemWithName:(NSString *)name andShop:(NSString *)shop{
     
     // create item
-    AUHItem *item = [AUHItem createItemWithName:name];
+    AUHItem *item = [AUHItem createItemWithName:name andShop:shop];
     
     // add item to data source
     [[self items] addObject:item];

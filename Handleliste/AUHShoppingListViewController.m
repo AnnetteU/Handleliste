@@ -28,7 +28,7 @@
     if (self) {
         
         // set title
-        [self setTitle:@"Handleliste handlet"];
+        [self setTitle:@"Handleliste utført"];
         
         // load items
         [self loadItems];

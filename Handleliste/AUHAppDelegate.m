@@ -17,7 +17,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // seed items
-    [self seedItems];
+    //[self seedItems];
     
     // Initialize List View Controller
     AUHListViewController *listViewController = [[AUHListViewController alloc] init];
@@ -26,16 +26,17 @@
     UINavigationController *listNavigationController = [[UINavigationController alloc] initWithRootViewController:listViewController];
     
     // Initiliaze Shopping List View Controller
-    AUHShoppingListViewController *shoppingListViewController = [[AUHShoppingListViewController alloc] init];
+    //AUHShoppingListViewController *shoppingListViewController = [[AUHShoppingListViewController alloc] init];
     
     // Initialize Navigation Controller
-    UINavigationController *shoppingListNavigationController = [[UINavigationController alloc] initWithRootViewController:shoppingListViewController];
+    //UINavigationController *shoppingListNavigationController = [[UINavigationController alloc] initWithRootViewController:shoppingListViewController];
     
     // Initialize Tab Bar Controller
     UITabBarController *tabBarController = [[UITabBarController alloc] init];
     
     // Configure Tab Bar Controller
-    [tabBarController setViewControllers:@[listNavigationController, shoppingListNavigationController]];
+    //[tabBarController setViewControllers:@[listNavigationController, shoppingListNavigationController]];
+    [tabBarController setViewControllers:@[listNavigationController]];
     
     // initialize window
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
@@ -75,51 +76,51 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
-#pragma mark -
-#pragma mark Helper Methods
-/**
- seedItems
- */
-- (void)seedItems{
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    if (![userDefaults boolForKey:@"AUHUserDefaultsSeedItems"]){
-        
-        // load seed items
-        NSString *filePath = [[NSBundle mainBundle] pathForResource:@"seed" ofType:@"plist"];
-        NSArray *seedItems = [NSArray arrayWithContentsOfFile:filePath];
-        
-        // items
-        NSMutableArray *items = [NSMutableArray array];
-        
-        // create list of items
-        for (int i = 0; i < [seedItems count]; i++){
-            NSDictionary *seedItem = [seedItems objectAtIndex:i];
-            
-            // create item
-            AUHItem *item = [AUHItem createItemWithName:[seedItem objectForKey:@"name"]];
-            
-            // add item to items
-            [items addObject:item];
-        }
-        
-        // items path
-        NSString *itemsPath = [[self documentsDirectory] stringByAppendingPathComponent:@"items.plist"];
-        
-        // write to file
-        if ([NSKeyedArchiver archiveRootObject:items toFile:itemsPath]){
-            [userDefaults setBool:YES forKey:@"AUHUserDefaultsSeedItems"];
-        }
-    }
-}
-
-/**
- documentsDirectory
- */
-- (NSString *)documentsDirectory{
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    return [paths lastObject];
-}
-
+//#pragma mark -
+//#pragma mark Helper Methods
+///**
+// seedItems
+// */
+//- (void)seedItems{
+//    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+//    if (![userDefaults boolForKey:@"AUHUserDefaultsSeedItems"]){
+//        
+//        // load seed items
+//        NSString *filePath = [[NSBundle mainBundle] pathForResource:@"seed" ofType:@"plist"];
+//        NSArray *seedItems = [NSArray arrayWithContentsOfFile:filePath];
+//        
+//        // items
+//        NSMutableArray *items = [NSMutableArray array];
+//        
+//        // create list of items
+//        for (int i = 0; i < [seedItems count]; i++){
+//            NSDictionary *seedItem = [seedItems objectAtIndex:i];
+//            
+//            // create item
+//            AUHItem *item = [AUHItem createItemWithName:[seedItem objectForKey:@"name"]];
+//            
+//            // add item to items
+//            [items addObject:item];
+//        }
+//        
+//        // items path
+//        NSString *itemsPath = [[self documentsDirectory] stringByAppendingPathComponent:@"items.plist"];
+//        
+//        // write to file
+//        if ([NSKeyedArchiver archiveRootObject:items toFile:itemsPath]){
+//            [userDefaults setBool:YES forKey:@"AUHUserDefaultsSeedItems"];
+//        }
+//    }
+//}
+//
+///**
+// documentsDirectory
+// */
+//- (NSString *)documentsDirectory{
+//    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+//    return [paths lastObject];
+//}
+//
 
 
 

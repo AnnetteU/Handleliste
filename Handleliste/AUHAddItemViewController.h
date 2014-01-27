@@ -13,11 +13,12 @@
 
 @property (weak) id<AUHAddItemViewControllerDelegate> delegate;
 @property IBOutlet UITextField *nameTextField;
+@property IBOutlet UITextField *shopTextField;
 
 @end
 
 @protocol AUHAddItemViewControllerDelegate <NSObject>
-- (void)controller:(AUHAddItemViewController *)controller didSaveItemWithName:(NSString *)name;
+- (void)controller:(AUHAddItemViewController *)controller didSaveItemWithName:(NSString *)name andShop:(NSString *)shop;
 @end
 
 
