@@ -20,7 +20,6 @@
     [aCoder encodeObject:self.Name forKey:@"name"];
     [aCoder encodeObject:self.Shop forKey:@"shop"];
     [aCoder encodeBool:self.isChecked forKey:@"isChecked"];
-    [aCoder encodeBool:self.inShoppingList forKey:@"inShoppingList"];
 }
 
 /**
@@ -33,7 +32,6 @@
         [self setName:[aDecoder decodeObjectForKey:@"name"]];
         [self setShop:[aDecoder decodeObjectForKey:@"shop"]];
         [self setIsChecked:[aDecoder decodeBoolForKey:@"isCheched"]];
-        [self setInShoppingList:[aDecoder decodeBoolForKey:@"inShoppingList"]];
     }
     return self;
 }
@@ -53,7 +51,6 @@
     [item setName:name];
     [item setShop:shop];
     [item setIsChecked:NO];
-    [item setInShoppingList:NO];
     [item setUuid:[[NSUUID UUID] UUIDString]];
     return item;
 }

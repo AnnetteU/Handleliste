@@ -9,6 +9,7 @@
 #import "AUHListViewController.h"
 #import "AUHItem.h"
 #import "AUHConstants.h"
+#import "AUHItemStore.h"
 
 @interface AUHListViewController ()
 
@@ -29,7 +30,7 @@
     if (self) {
         // Custom initialization
         // set title
-        self.title = @"Handleliste";
+        self.title = ApplicationTitleConstant;
         
         // load items
         [self loadItems];
@@ -55,7 +56,7 @@
     [[self navigationItem] setRightBarButtonItem:rightbarButtonItem];
     
     // register reusable cell identifer for the table view
-    [[self tableView] registerClass:[UITableViewCell class] forCellReuseIdentifier:UITableViewCellIdentifier];
+    [[self tableView] registerClass:[UITableViewCell class] forCellReuseIdentifier:UITableViewCellIdentifierConstant];
 
 }
 
@@ -82,7 +83,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
 
     // Return the number of rows in the section.
-    return [[self items] count];
+    return [[[AUHItemStore sharedStore] allItems] count];
 }
 
 /**
@@ -91,18 +92,18 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
 
     // get reusable cell identifier
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:UITableViewCellIdentifier forIndexPath:indexPath];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:UITableViewCellIdentifierConstant forIndexPath:indexPath];
     
     // fetch item
-    AUHItem *item = [[self items] objectAtIndex:[indexPath row]];
+    AUHItem *item = [[[AUHItemStore sharedStore] allItems] objectAtIndex:[indexPath row]];
     
     // configure cell
     [[cell textLabel] setText:[item Name]];
     [cell setAccessoryType:UITableViewCellAccessoryDetailDisclosureButton];
     
     // show/hide checkmark
-    if ([item inShoppingList]){
-        [[cell imageView] setImage:[UIImage imageNamed:@"checkmark"]];
+    if ([item isChecked]){
+        [[cell imageView] setImage:[UIImage imageNamed:CheckMarkImageConstant]];
     }
     else{
         [[cell imageView] setImage:nil];
@@ -121,7 +122,13 @@
     return YES;
 }
 
-
+/**
+ moveRowsAtIndexPath
+ Reorder rows
+ */
+- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath{
+    [[AUHItemStore sharedStore] moveItemAtIndex:[sourceIndexPath row] toIndex:[destinationIndexPath row]];
+}
 
 // Override to support editing the table view.
 /**
@@ -132,7 +139,8 @@
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         
         // delete item from items
-        [[self items] removeObjectAtIndex:[indexPath row]];
+        AUHItem *item = [[[AUHItemStore sharedStore] allItems] objectAtIndex:[indexPath row]];
+        [[AUHItemStore sharedStore] removeItem:item];
         
         // update the table view
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationRight];
@@ -154,14 +162,14 @@
     // Fetch Item
     AUHItem *item = [[self items] objectAtIndex:[indexPath row]];
     
-    // Update Item
-    [item setInShoppingList:![item inShoppingList]];
+    // Update Item checked status
+    [item setIsChecked:![item isChecked]];
     
     // Update Cell
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     
-    if ([item inShoppingList]) {
-        [[cell imageView] setImage:[UIImage imageNamed:@"checkmark"]];
+    if ([item isChecked]) {
+        [[cell imageView] setImage:[UIImage imageNamed:CheckMarkImageConstant]];
     } else {
         [[cell imageView] setImage:nil];
     }
@@ -184,14 +192,6 @@
     // push View Controller onto navigation stack
     [[self navigationController] pushViewController:editItemViewController animated:YES];
 }
-
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
 
 
 // Override to support conditional rearranging of the table view.
@@ -255,7 +255,7 @@
 - (void)addItem:(id)sender{
     
     // initialize add item view controller
-    AUHAddItemViewController *addItemViewController = [[AUHAddItemViewController alloc] initWithNibName:@"AUHAddItemViewController" bundle:nil];
+    AUHAddItemViewController *addItemViewController = [[AUHAddItemViewController alloc] initWithNibName:AUHAddItemViewControllerConstant bundle:nil];
     
     // set delegate
     [addItemViewController setDelegate:self];
@@ -278,11 +278,6 @@
     
     NSString *filePath = [self pathForItems];
     [NSKeyedArchiver archiveRootObject:[self items] toFile:filePath];
-    
-    // post notification
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"AUHShoppingListDidChangeNotification" object:self];
-    
-    //[[UIApplication sharedApplication] setApplicationIconBadgeNumber:[[self items] count]];
 }
 
 
@@ -308,7 +303,7 @@
 - (NSString *)pathForItems{
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documents = [paths lastObject];
-    return [documents stringByAppendingPathComponent:@"items.plist"];
+    return [documents stringByAppendingPathComponent:ItemsPlistConstant];
 }
 
 

@@ -16,6 +16,5 @@
 @property NSString *Name;
 @property NSString *Shop;
 @property BOOL isChecked;
-@property BOOL inShoppingList;
 
 @end

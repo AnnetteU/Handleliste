@@ -14,7 +14,6 @@
 		CA943B0018840ECA0059BF38 /* AUHAddItemViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA943AFE18840ECA0059BF38 /* AUHAddItemViewController.xib */; };
 		CA943B041887C5E50059BF38 /* AUHEditItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA943B021887C5E50059BF38 /* AUHEditItemViewController.m */; };
 		CA943B051887C5E50059BF38 /* AUHEditItemViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA943B031887C5E50059BF38 /* AUHEditItemViewController.xib */; };
-		CA943B08188C78880059BF38 /* AUHShoppingListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA943B07188C78880059BF38 /* AUHShoppingListViewController.m */; };
 		CA943B0C188E8D0A0059BF38 /* checkmark.png in Resources */ = {isa = PBXBuildFile; fileRef = CA943B0A188E8D0A0059BF38 /* checkmark.png */; };
 		CA943B0D188E8D0A0059BF38 /* checkmark@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA943B0B188E8D0A0059BF38 /* checkmark@2x.png */; };
 		CAB3B98F18801E61002293B6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAB3B98E18801E61002293B6 /* Foundation.framework */; };
@@ -30,6 +29,7 @@
 		CAB3B9B218801E61002293B6 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CAB3B9B018801E61002293B6 /* InfoPlist.strings */; };
 		CAB3B9B418801E61002293B6 /* HandlelisteTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CAB3B9B318801E61002293B6 /* HandlelisteTests.m */; };
 		CAC1DC64189682640047499F /* AUHConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC1DC63189682640047499F /* AUHConstants.m */; };
+		CAC1DC671897AFA90047499F /* AUHItemStore.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC1DC661897AFA90047499F /* AUHItemStore.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,8 +54,6 @@
 		CA943B011887C5E50059BF38 /* AUHEditItemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AUHEditItemViewController.h; sourceTree = "<group>"; };
 		CA943B021887C5E50059BF38 /* AUHEditItemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AUHEditItemViewController.m; sourceTree = "<group>"; };
 		CA943B031887C5E50059BF38 /* AUHEditItemViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AUHEditItemViewController.xib; sourceTree = "<group>"; };
-		CA943B06188C78880059BF38 /* AUHShoppingListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AUHShoppingListViewController.h; sourceTree = "<group>"; };
-		CA943B07188C78880059BF38 /* AUHShoppingListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AUHShoppingListViewController.m; sourceTree = "<group>"; };
 		CA943B0A188E8D0A0059BF38 /* checkmark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checkmark.png; sourceTree = "<group>"; };
 		CA943B0B188E8D0A0059BF38 /* checkmark@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "checkmark@2x.png"; sourceTree = "<group>"; };
 		CA943B1218911BC60059BF38 /* Shoppinglist@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Shoppinglist@2x.png"; path = "Handleliste/Shoppinglist@2x.png"; sourceTree = "<group>"; };
@@ -77,6 +75,8 @@
 		CAB3B9B318801E61002293B6 /* HandlelisteTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HandlelisteTests.m; sourceTree = "<group>"; };
 		CAC1DC62189682640047499F /* AUHConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AUHConstants.h; sourceTree = "<group>"; };
 		CAC1DC63189682640047499F /* AUHConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AUHConstants.m; sourceTree = "<group>"; };
+		CAC1DC651897AFA90047499F /* AUHItemStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AUHItemStore.h; sourceTree = "<group>"; };
+		CAC1DC661897AFA90047499F /* AUHItemStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AUHItemStore.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -156,14 +156,14 @@
 				CAB3B99518801E61002293B6 /* Supporting Files */,
 				CA943AF418802AAE0059BF38 /* AUHListViewController.h */,
 				CA943AF518802AAE0059BF38 /* AUHListViewController.m */,
+				CAC1DC651897AFA90047499F /* AUHItemStore.h */,
+				CAC1DC661897AFA90047499F /* AUHItemStore.m */,
 				CA943B011887C5E50059BF38 /* AUHEditItemViewController.h */,
 				CA943B021887C5E50059BF38 /* AUHEditItemViewController.m */,
 				CA943B031887C5E50059BF38 /* AUHEditItemViewController.xib */,
 				CA943AFC18840ECA0059BF38 /* AUHAddItemViewController.h */,
 				CA943AFD18840ECA0059BF38 /* AUHAddItemViewController.m */,
 				CA943AFE18840ECA0059BF38 /* AUHAddItemViewController.xib */,
-				CA943B06188C78880059BF38 /* AUHShoppingListViewController.h */,
-				CA943B07188C78880059BF38 /* AUHShoppingListViewController.m */,
 				CAC1DC62189682640047499F /* AUHConstants.h */,
 				CAC1DC63189682640047499F /* AUHConstants.m */,
 			);
@@ -300,10 +300,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CA943B08188C78880059BF38 /* AUHShoppingListViewController.m in Sources */,
 				CA943AF618802AAE0059BF38 /* AUHListViewController.m in Sources */,
 				CA943AF918802D4E0059BF38 /* AUHItem.m in Sources */,
 				CA943B041887C5E50059BF38 /* AUHEditItemViewController.m in Sources */,
+				CAC1DC671897AFA90047499F /* AUHItemStore.m in Sources */,
 				CAC1DC64189682640047499F /* AUHConstants.m in Sources */,
 				CAB3B99B18801E61002293B6 /* main.m in Sources */,
 				CA943AFF18840ECA0059BF38 /* AUHAddItemViewController.m in Sources */,

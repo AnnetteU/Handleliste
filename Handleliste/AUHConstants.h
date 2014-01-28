@@ -10,6 +10,12 @@
 
 @interface AUHConstants : NSObject
 
-extern NSString *const UITableViewCellIdentifier;
+extern NSString *const UITableViewCellIdentifierConstant;
+extern NSString *const AUHAddItemViewControllerConstant;
+extern NSString *const ItemsPlistConstant;
+extern NSString *const CheckMarkImageConstant;
+extern NSString *const ApplicationTitleConstant;
+
+
 
 @end

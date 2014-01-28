@@ -10,6 +10,10 @@
 
 @implementation AUHConstants
 
-NSString *const UITableViewCellIdentifier = @"UITableViewCellIdentifier";
+NSString *const UITableViewCellIdentifierConstant = @"UITableViewCellIdentifier";
+NSString *const AUHAddItemViewControllerConstant = @"AUHAddItemViewController";
+NSString *const ItemsPlistConstant = @"items.plist";
+NSString *const CheckMarkImageConstant = @"checkmark";
+NSString *const ApplicationTitleConstant = @"Handleliste";
 
 @end
