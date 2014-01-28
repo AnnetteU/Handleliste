@@ -15,5 +15,6 @@ NSString *const AUHAddItemViewControllerConstant = @"AUHAddItemViewController";
 NSString *const ItemsPlistConstant = @"items.plist";
 NSString *const CheckMarkImageConstant = @"checkmark";
 NSString *const ApplicationTitleConstant = @"Handleliste";
+NSString *const ApplicationItemsArchiveConstant = @"items.plist";
 
 @end

@@ -15,6 +15,7 @@ extern NSString *const AUHAddItemViewControllerConstant;
 extern NSString *const ItemsPlistConstant;
 extern NSString *const CheckMarkImageConstant;
 extern NSString *const ApplicationTitleConstant;
+extern NSString *const ApplicationItemsArchiveConstant;
 
 
 

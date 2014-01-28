@@ -10,6 +10,7 @@
 
 #import "AUHItemStore.h"
 #import "AUHItem.h"
+#import "AUHConstants.h"
 
 @implementation AUHItemStore
 
@@ -97,8 +98,37 @@
     [allItems insertObject:item atIndex:to];
 }
 
+/**
+ itemArchivePath
+ */
+- (NSString *)itemArchivePath{
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documents = [paths lastObject];
+    return [documents stringByAppendingPathComponent:ApplicationItemsArchiveConstant];
+}
 
+/**
+ saveChanges
+ */
+- (BOOL)saveChanges{
+    
+    // returns success or failure
+    NSString *path = [self itemArchivePath];
+    return [NSKeyedArchiver archiveRootObject:allItems toFile:path];
+}
 
+/**
+ loadItems
+ */
+- (void)loadItems{
+    NSString *path = [self itemArchivePath];
+    allItems = [NSKeyedUnarchiver unarchiveObjectWithFile:path];
+    
+    // if the array hadn't been saved previously, create a new one
+    if (allItems){
+        allItems = [[NSMutableArray alloc] init];
+    }
+}
 
 
 

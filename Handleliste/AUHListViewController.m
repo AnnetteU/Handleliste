@@ -33,7 +33,8 @@
         self.title = ApplicationTitleConstant;
         
         // load items
-        [self loadItems];
+        //[self loadItems];
+        [[AUHItemStore sharedStore] loadItems];
     }
     return self;
 }
@@ -146,7 +147,8 @@
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationRight];
         
         // save changes to disk
-        [self saveItems];
+        //[self saveItems];
+        [[AUHItemStore sharedStore] saveChanges];
     }
 }
 
@@ -175,7 +177,8 @@
     }
     
     // Save Items
-    [self saveItems];
+    //[self saveItems];
+    [[AUHItemStore sharedStore] saveChanges];
 }
 
 /**
@@ -220,7 +223,8 @@
     [[self tableView] insertRowsAtIndexPaths:@[newIndexPath] withRowAnimation:UITableViewRowAnimationNone];
     
     // save items
-    [self saveItems];
+    //[self saveItems];
+    [[AUHItemStore sharedStore] saveChanges];
     
 }
 
@@ -243,7 +247,8 @@
     }
     
     // save items
-    [self saveItems];
+    //[self saveItems];
+    [[AUHItemStore sharedStore] saveChanges];
 }
 
 
@@ -271,40 +276,40 @@
     [[self tableView] setEditing:![[self tableView] isEditing] animated:YES];
 }
 
-/**
- saveItems
- */
-- (void)saveItems{
-    
-    NSString *filePath = [self pathForItems];
-    [NSKeyedArchiver archiveRootObject:[self items] toFile:filePath];
-}
+///**
+// saveItems
+// */
+//- (void)saveItems{
+//    
+//    NSString *filePath = [self pathForItems];
+//    [NSKeyedArchiver archiveRootObject:[self items] toFile:filePath];
+//}
 
 
 #pragma mark -
 #pragma mark Helper Methods
-/**
- loadItems
- */
-- (void)loadItems{
-    NSString *filePath = [self pathForItems];
-    if ([[NSFileManager defaultManager] fileExistsAtPath:filePath]){
-        self.items = [NSKeyedUnarchiver unarchiveObjectWithFile:filePath];
-    }
-    else{
-        self.items = [NSMutableArray array];
-    }
-    
-}
+///**
+// loadItems
+// */
+//- (void)loadItems{
+//    NSString *filePath = [self pathForItems];
+//    if ([[NSFileManager defaultManager] fileExistsAtPath:filePath]){
+//        self.items = [NSKeyedUnarchiver unarchiveObjectWithFile:filePath];
+//    }
+//    else{
+//        self.items = [NSMutableArray array];
+//    }
+//    
+//}
 
-/**
- pathForItems
- */
-- (NSString *)pathForItems{
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documents = [paths lastObject];
-    return [documents stringByAppendingPathComponent:ItemsPlistConstant];
-}
+///**
+// pathForItems
+// */
+//- (NSString *)pathForItems{
+//    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+//    NSString *documents = [paths lastObject];
+//    return [documents stringByAppendingPathComponent:ApplicationItemsArchiveConstant];
+//}
 
 
 
