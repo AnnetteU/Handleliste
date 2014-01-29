@@ -45,11 +45,18 @@
  Initialise allItems array
  */
 - (id)init{
+    
     self = [super init];
-    if (self){
-        allItems = [[NSMutableArray alloc] init];
+    if(self) {
+        NSString *path = [self itemArchivePath];
+        allItems = [NSKeyedUnarchiver unarchiveObjectWithFile:path];
+        
+        // If the array hadn't been saved previously, create a new empty one
+        if(!allItems)
+            allItems = [[NSMutableArray alloc] init];
     }
     return self;
+
 }
 
 #pragma mark - 
@@ -66,6 +73,7 @@
  createItem
  */
 - (AUHItem *)createItem:(NSString *)name andShop:(NSString *)shop{
+    
     AUHItem *item = [AUHItem createItemWithName:name andShop:shop];
     [allItems addObject:item];
     return item;
@@ -88,13 +96,9 @@
  Items
  */
 - (void)loadItems{
+    
     NSString *path = [self itemArchivePath];
     allItems = [NSKeyedUnarchiver unarchiveObjectWithFile:path];
-    
-//    // if the array hadn't been saved previously, create a new one
-//    if (!allItems){
-//        allItems = [[NSMutableArray alloc] init];
-//    }
 }
 
 /**
@@ -131,6 +135,7 @@
  itemArchivePath
  */
 - (NSString *)itemArchivePath{
+    
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documents = [paths lastObject];
     return [documents stringByAppendingPathComponent:ApplicationItemsArchiveConstant];
@@ -141,6 +146,7 @@
  numberOfCheckedItems
  */
 - (int)numberOfCheckedItems{
+    
     int counter = 0;
     for(int i = 0; i < [allItems count]; i++){
         if ([[allItems objectAtIndex:i] isChecked]){

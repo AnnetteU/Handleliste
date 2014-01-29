@@ -24,16 +24,27 @@
 /**
  initWithStyle
  */
-- (id)initWithStyle:(UITableViewStyle)style
-{
-    self = [super initWithStyle:style];
-    if (self) {
-        // Custom initialization
-        // set title
-        self.title = ApplicationTitleConstant;
+- (id)initWithStyle:(UITableViewStyle)style{
+    return [self init];
+}
+
+/**
+ init
+ */
+- (id)init{
+    
+    self = [super initWithStyle:UITableViewStyleGrouped];
+    if (self){
+        [self setTitle:ApplicationTitleConstant];
         
-        // load items
-        [[AUHItemStore sharedStore] loadItems];
+        // edit button
+        [[self navigationItem] setLeftBarButtonItem:[self editButtonItem]];
+        
+        // create add button
+        UIBarButtonItem *rightbarButtonItem = [[UIBarButtonItem alloc]
+                                               initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
+                                               target:self action:@selector(addItem:)];
+        [[self navigationItem] setRightBarButtonItem:rightbarButtonItem];
     }
     return self;
 }
@@ -46,18 +57,11 @@
 - (void)viewDidLoad{
     [super viewDidLoad];
     
-    // edit button
-    [[self navigationItem] setLeftBarButtonItem:[self editButtonItem]];
-    
-    // create add button
-    UIBarButtonItem *rightbarButtonItem = [[UIBarButtonItem alloc]
-                                         initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
-                                         target:self action:@selector(addItem:)];
-    [[self navigationItem] setRightBarButtonItem:rightbarButtonItem];
-    
     [self.tableView registerNib:[UINib nibWithNibName:AUHItemCellConstant
                                                bundle:[NSBundle mainBundle]]
          forCellReuseIdentifier:UITableViewCellIdentifierConstant];
+    
+    [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
 
 }
 
