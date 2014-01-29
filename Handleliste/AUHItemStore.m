@@ -53,7 +53,7 @@
 }
 
 #pragma mark - 
-#pragma mark Helper Methods
+#pragma mark Actions
 
 /**
  allItems
@@ -69,6 +69,32 @@
     AUHItem *item = [AUHItem createItemWithName:name andShop:shop];
     [allItems addObject:item];
     return item;
+}
+
+/**
+ saveChanges
+ */
+- (BOOL)saveChanges{
+    
+    // update badgenumber
+    [self setApplicationBadgeNumber];
+    
+    // returns success or failure
+    NSString *path = [self itemArchivePath];
+    return [NSKeyedArchiver archiveRootObject:allItems toFile:path];
+}
+
+/**
+ Items
+ */
+- (void)loadItems{
+    NSString *path = [self itemArchivePath];
+    allItems = [NSKeyedUnarchiver unarchiveObjectWithFile:path];
+    
+//    // if the array hadn't been saved previously, create a new one
+//    if (!allItems){
+//        allItems = [[NSMutableArray alloc] init];
+//    }
 }
 
 /**
@@ -98,6 +124,9 @@
     [allItems insertObject:item atIndex:to];
 }
 
+#pragma mark -
+#pragma mark Helper Methods
+
 /**
  itemArchivePath
  */
@@ -107,39 +136,26 @@
     return [documents stringByAppendingPathComponent:ApplicationItemsArchiveConstant];
 }
 
-/**
- saveChanges
- */
-- (BOOL)saveChanges{
-    
-    // returns success or failure
-    NSString *path = [self itemArchivePath];
-    return [NSKeyedArchiver archiveRootObject:allItems toFile:path];
-}
 
 /**
- loadItems
+ numberOfCheckedItems
  */
-- (void)loadItems{
-    NSString *path = [self itemArchivePath];
-    allItems = [NSKeyedUnarchiver unarchiveObjectWithFile:path];
-    
-    // if the array hadn't been saved previously, create a new one
-    if (allItems){
-        allItems = [[NSMutableArray alloc] init];
+- (int)numberOfCheckedItems{
+    int counter = 0;
+    for(int i = 0; i < [allItems count]; i++){
+        if ([[allItems objectAtIndex:i] isChecked]){
+            counter++;
+        }
     }
+    return counter;
 }
 
-
-
-
-
-
-
-
-
-
-
+/**
+ setApplicationBadgeNumber
+ */
+- (void)setApplicationBadgeNumber{
+    [[UIApplication sharedApplication] setApplicationIconBadgeNumber:[allItems count] - [self numberOfCheckedItems]];
+}
 
 
 

@@ -23,5 +23,7 @@
 - (NSString *)itemArchivePath;
 - (BOOL)saveChanges;
 - (void)loadItems;
+- (int)numberOfCheckedItems;
+- (void)setApplicationBadgeNumber;
 
 @end

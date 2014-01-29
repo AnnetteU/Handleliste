@@ -7,6 +7,7 @@
 //
 
 #import "AUHEditItemViewController.h"
+#import "AUHConstants.h"
 #import "AUHItem.h"
 
 @interface AUHEditItemViewController ()
@@ -36,7 +37,7 @@
  initWithItem
  */
 - (id)initWithItem:(AUHItem *)item andDelegate:(id<AUHEditItemViewControllerDelegate>)delegate{
-    self = [super initWithNibName:@"AUHEditItemViewController" bundle:nil];
+    self = [super initWithNibName:AUHEditItemViewControllerConstant bundle:nil];
     if (self){
         
         // set item
@@ -62,9 +63,10 @@
     UIBarButtonItem *saveButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(save:)];
     [[self navigationItem] setRightBarButtonItem:saveButtonItem];
     
-    // set text field
+    // set text fields
     if ([self item]){
         [[self nameTextField] setText:[[self item] Name]];
+        [[self shopTextField] setText:[[self item] Shop]];
     }
 }
 
@@ -91,9 +93,11 @@
 - (IBAction)save:(id)sender{
     
     NSString *name = [[self nameTextField] text];
+    NSString *shop = [[self shopTextField] text];
     
     // update item
     [[self item] setName:name];
+    [[self item] setShop:shop];
     
     // notify delegate
     [[self delegate] controller:self didUpdateItem:[self item]];

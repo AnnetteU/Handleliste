@@ -33,7 +33,6 @@
         self.title = ApplicationTitleConstant;
         
         // load items
-        //[self loadItems];
         [[AUHItemStore sharedStore] loadItems];
     }
     return self;
@@ -147,7 +146,6 @@
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationRight];
         
         // save changes to disk
-        //[self saveItems];
         [[AUHItemStore sharedStore] saveChanges];
     }
 }
@@ -177,7 +175,6 @@
     }
     
     // Save Items
-    //[self saveItems];
     [[AUHItemStore sharedStore] saveChanges];
 }
 
@@ -187,7 +184,7 @@
 - (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath {
     
     // fetch item
-    AUHItem *item = [[self items] objectAtIndex:[indexPath row]];
+    AUHItem *item = [[[AUHItemStore sharedStore] allItems] objectAtIndex:[indexPath row]];
     
     // initialize Edit Item View Controller
     AUHEditItemViewController *editItemViewController = [[AUHEditItemViewController alloc] initWithItem:item andDelegate:self];
@@ -204,7 +201,6 @@
     return YES;
 }
 
-
 #pragma mark -
 #pragma mark Add Item View Controller Delegate Methods
 /**
@@ -212,18 +208,16 @@
  */
 - (void)controller:(AUHAddItemViewController *)controller didSaveItemWithName:(NSString *)name andShop:(NSString *)shop{
     
-    // create item
-    AUHItem *item = [AUHItem createItemWithName:name andShop:shop];
+    AUHItem *newItem = [[AUHItemStore sharedStore] createItem:name andShop:shop];
     
-    // add item to data source
-    [[self items] addObject:item];
+    // get last row in table
+    int lastRow = [[[AUHItemStore sharedStore] allItems] indexOfObject:newItem];
+    NSIndexPath *newIndexPath = [NSIndexPath indexPathForRow:lastRow inSection:0];
     
-    // add row to the table view
-    NSIndexPath *newIndexPath = [NSIndexPath indexPathForItem:([self.items count] - 1) inSection:0];
-    [[self tableView] insertRowsAtIndexPaths:@[newIndexPath] withRowAnimation:UITableViewRowAnimationNone];
+    // insert new row
+    [[self tableView] insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath] withRowAnimation:UITableViewRowAnimationTop];
     
     // save items
-    //[self saveItems];
     [[AUHItemStore sharedStore] saveChanges];
     
 }
@@ -236,8 +230,8 @@
 - (void)controller:(AUHEditItemViewController *)controller didUpdateItem:(AUHItem *)item{
     
     // fetch item
-    for (int i = 0; i < [[self items] count]; i++){
-        AUHItem *updateItem = [[self items] objectAtIndex:i];
+    for (int i = 0; i < [[[AUHItemStore sharedStore] allItems] count]; i++){
+        AUHItem *updateItem = [[[AUHItemStore sharedStore] allItems] objectAtIndex:i];
         if ([[updateItem uuid] isEqualToString:[item uuid]]){
             
             // update table view row
@@ -247,7 +241,6 @@
     }
     
     // save items
-    //[self saveItems];
     [[AUHItemStore sharedStore] saveChanges];
 }
 
@@ -276,40 +269,6 @@
     [[self tableView] setEditing:![[self tableView] isEditing] animated:YES];
 }
 
-///**
-// saveItems
-// */
-//- (void)saveItems{
-//    
-//    NSString *filePath = [self pathForItems];
-//    [NSKeyedArchiver archiveRootObject:[self items] toFile:filePath];
-//}
-
-
-#pragma mark -
-#pragma mark Helper Methods
-///**
-// loadItems
-// */
-//- (void)loadItems{
-//    NSString *filePath = [self pathForItems];
-//    if ([[NSFileManager defaultManager] fileExistsAtPath:filePath]){
-//        self.items = [NSKeyedUnarchiver unarchiveObjectWithFile:filePath];
-//    }
-//    else{
-//        self.items = [NSMutableArray array];
-//    }
-//    
-//}
-
-///**
-// pathForItems
-// */
-//- (NSString *)pathForItems{
-//    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-//    NSString *documents = [paths lastObject];
-//    return [documents stringByAppendingPathComponent:ApplicationItemsArchiveConstant];
-//}
 
 
 

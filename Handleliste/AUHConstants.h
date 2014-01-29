@@ -12,6 +12,7 @@
 
 extern NSString *const UITableViewCellIdentifierConstant;
 extern NSString *const AUHAddItemViewControllerConstant;
+extern NSString *const AUHEditItemViewControllerConstant;
 extern NSString *const ItemsPlistConstant;
 extern NSString *const CheckMarkImageConstant;
 extern NSString *const ApplicationTitleConstant;
