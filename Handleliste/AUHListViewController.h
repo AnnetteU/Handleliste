@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "AUHAddItemViewController.h"
 #import "AUHEditItemViewController.h"
+#import "AUHItemCell.h"
 
 @interface AUHListViewController : UITableViewController<AUHAddItemViewControllerDelegate, AUHEditItemViewControllerDelegate>
 

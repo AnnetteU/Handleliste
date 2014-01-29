@@ -30,6 +30,8 @@
 		CAB3B9B418801E61002293B6 /* HandlelisteTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CAB3B9B318801E61002293B6 /* HandlelisteTests.m */; };
 		CAC1DC64189682640047499F /* AUHConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC1DC63189682640047499F /* AUHConstants.m */; };
 		CAC1DC671897AFA90047499F /* AUHItemStore.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC1DC661897AFA90047499F /* AUHItemStore.m */; };
+		CAC1DC6A1899246F0047499F /* AUHItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC1DC691899246F0047499F /* AUHItemCell.m */; };
+		CAC1DC6C189924B00047499F /* AUHItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAC1DC6B189924B00047499F /* AUHItemCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,6 +79,9 @@
 		CAC1DC63189682640047499F /* AUHConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AUHConstants.m; sourceTree = "<group>"; };
 		CAC1DC651897AFA90047499F /* AUHItemStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AUHItemStore.h; sourceTree = "<group>"; };
 		CAC1DC661897AFA90047499F /* AUHItemStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AUHItemStore.m; sourceTree = "<group>"; };
+		CAC1DC681899246F0047499F /* AUHItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AUHItemCell.h; sourceTree = "<group>"; };
+		CAC1DC691899246F0047499F /* AUHItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AUHItemCell.m; sourceTree = "<group>"; };
+		CAC1DC6B189924B00047499F /* AUHItemCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AUHItemCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -156,6 +161,9 @@
 				CAB3B99518801E61002293B6 /* Supporting Files */,
 				CA943AF418802AAE0059BF38 /* AUHListViewController.h */,
 				CA943AF518802AAE0059BF38 /* AUHListViewController.m */,
+				CAC1DC681899246F0047499F /* AUHItemCell.h */,
+				CAC1DC6B189924B00047499F /* AUHItemCell.xib */,
+				CAC1DC691899246F0047499F /* AUHItemCell.m */,
 				CAC1DC651897AFA90047499F /* AUHItemStore.h */,
 				CAC1DC661897AFA90047499F /* AUHItemStore.m */,
 				CA943B011887C5E50059BF38 /* AUHEditItemViewController.h */,
@@ -280,6 +288,7 @@
 				CAB3B99918801E61002293B6 /* InfoPlist.strings in Resources */,
 				CA943B0018840ECA0059BF38 /* AUHAddItemViewController.xib in Resources */,
 				CAB3B9A118801E61002293B6 /* Images.xcassets in Resources */,
+				CAC1DC6C189924B00047499F /* AUHItemCell.xib in Resources */,
 				CA943B0C188E8D0A0059BF38 /* checkmark.png in Resources */,
 				CA943B0D188E8D0A0059BF38 /* checkmark@2x.png in Resources */,
 			);
@@ -300,6 +309,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CAC1DC6A1899246F0047499F /* AUHItemCell.m in Sources */,
 				CA943AF618802AAE0059BF38 /* AUHListViewController.m in Sources */,
 				CA943AF918802D4E0059BF38 /* AUHItem.m in Sources */,
 				CA943B041887C5E50059BF38 /* AUHEditItemViewController.m in Sources */,

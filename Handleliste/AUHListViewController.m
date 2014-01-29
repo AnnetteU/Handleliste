@@ -55,8 +55,9 @@
                                          target:self action:@selector(addItem:)];
     [[self navigationItem] setRightBarButtonItem:rightbarButtonItem];
     
-    // register reusable cell identifer for the table view
-    [[self tableView] registerClass:[UITableViewCell class] forCellReuseIdentifier:UITableViewCellIdentifierConstant];
+    [self.tableView registerNib:[UINib nibWithNibName:AUHItemCellConstant
+                                               bundle:[NSBundle mainBundle]]
+         forCellReuseIdentifier:UITableViewCellIdentifierConstant];
 
 }
 
@@ -99,6 +100,7 @@
     
     // configure cell
     [[cell textLabel] setText:[item Name]];
+    [[cell detailTextLabel] setText:[item Shop]];
     [cell setAccessoryType:UITableViewCellAccessoryDetailDisclosureButton];
     
     // show/hide checkmark
