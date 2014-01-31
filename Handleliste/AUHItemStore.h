@@ -20,10 +20,10 @@
 - (AUHItem *)createItem:(NSString *)name andShop:(NSString *)shop;
 - (void)removeItem:(AUHItem *)item;
 - (void)moveItemAtIndex:(int)from toIndex:(int)to;
-- (NSString *)itemArchivePath;
 - (BOOL)saveChanges;
 - (void)loadItems;
 - (int)numberOfCheckedItems;
 - (void)setApplicationBadgeNumber;
+- (NSString *)itemArchivePath;
 
 @end

@@ -9,8 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface AUHItemCell : UITableViewCell
-
-@property (weak, nonatomic) IBOutlet UILabel *nameLabel;
-@property (weak, nonatomic) IBOutlet UILabel *shopLabel;
+//
+//@property (weak, nonatomic) IBOutlet UILabel *nameLabel;
+//@property (weak, nonatomic) IBOutlet UILabel *shopLabel;
 
 @end

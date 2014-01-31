@@ -45,6 +45,16 @@
                                                initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
                                                target:self action:@selector(addItem:)];
         [[self navigationItem] setRightBarButtonItem:rightbarButtonItem];
+        
+        // we want to add buttons to the toolbar
+        [[self navigationController] setToolbarHidden:NO];
+        
+        UIBarButtonItem *flexiableItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil];
+        UIBarButtonItem *item1 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:nil];
+        UIBarButtonItem *item2 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:nil];
+        
+        NSArray *items = [NSArray arrayWithObjects:item1, flexiableItem, item2, nil];
+        [[self navigationController] setToolbarItems:items];
     }
     return self;
 }
@@ -65,6 +75,20 @@
 
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    
+    [super viewDidAppear:animated];
+    [[self tableView] reloadData];
+    [[self navigationController] setToolbarHidden: NO animated:YES];
+
+    UIBarButtonItem *deleteAllCheckedButtonItem = [[UIBarButtonItem alloc]
+                                                   initWithTitle:DeleteAllCheckedButtonTitle
+                                                   style:UIBarButtonItemStylePlain target:self action:nil];
+    
+    NSMutableArray *arr = [NSMutableArray arrayWithObjects:deleteAllCheckedButtonItem, nil];
+    [self setToolbarItems:arr animated:YES];
+}
+
 - (void)didReceiveMemoryWarning{
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -78,7 +102,6 @@
  numberOfSectionsInTableView
  */
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    // Return the number of sections.
     return 1;
 }
 
@@ -86,8 +109,6 @@
  numberOfRowsInSection
  */
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-
-    // Return the number of rows in the section.
     return [[[AUHItemStore sharedStore] allItems] count];
 }
 
@@ -108,18 +129,16 @@
     [cell setAccessoryType:UITableViewCellAccessoryDetailDisclosureButton];
     
     // show/hide checkmark
-    if ([item isChecked]){
+    if ([item isChecked]) {
         [[cell imageView] setImage:[UIImage imageNamed:CheckMarkImageConstant]];
-    }
-    else{
+        
+    } else {
         [[cell imageView] setImage:nil];
     }
     
     return cell;
 }
 
-
-// Override to support conditional editing of the table view.
 /**
  tableView canEditRowAtIndexPath
  */
@@ -166,7 +185,7 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     // Fetch Item
-    AUHItem *item = [[self items] objectAtIndex:[indexPath row]];
+    AUHItem *item = [[[AUHItemStore sharedStore] allItems] objectAtIndex:[indexPath row]];
     
     // Update Item checked status
     [item setIsChecked:![item isChecked]];
@@ -176,6 +195,7 @@
     
     if ([item isChecked]) {
         [[cell imageView] setImage:[UIImage imageNamed:CheckMarkImageConstant]];
+
     } else {
         [[cell imageView] setImage:nil];
     }
@@ -274,6 +294,8 @@
 - (void)editItems:(id)sender{
     [[self tableView] setEditing:![[self tableView] isEditing] animated:YES];
 }
+
+
 
 
 

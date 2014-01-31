@@ -18,5 +18,6 @@ NSString *const CheckMarkImageConstant = @"checkmark";
 NSString *const ApplicationTitleConstant = @"Handleliste";
 NSString *const ApplicationItemsArchiveConstant = @"items.archive";
 NSString *const AUHItemCellConstant = @"AUHItemCell";
+NSString *const DeleteAllCheckedButtonTitle = @"Slett markerte";
 
 @end

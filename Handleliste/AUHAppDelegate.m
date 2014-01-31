@@ -15,9 +15,6 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // seed items
-    //[self seedItems];
-    
     // Initialize List View Controller
     AUHListViewController *listViewController = [[AUHListViewController alloc] init];
     
@@ -25,18 +22,17 @@
     UINavigationController *listNavigationController = [[UINavigationController alloc] initWithRootViewController:listViewController];
     
     // Initialize Tab Bar Controller
-    UITabBarController *tabBarController = [[UITabBarController alloc] init];
+    //UITabBarController *tabBarController = [[UITabBarController alloc] init];
     
     // Configure Tab Bar Controller
-    //[tabBarController setViewControllers:@[listNavigationController, shoppingListNavigationController]];
-    [tabBarController setViewControllers:@[listNavigationController]];
+    //[tabBarController setViewControllers:@[listNavigationController]];
     
     // initialize window
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     
-    // configre window
-    [self.window setRootViewController:tabBarController];
+    // configure window
+    [self.window setRootViewController:listNavigationController];
     [self.window setBackgroundColor:[UIColor whiteColor]];
     [self.window makeKeyAndVisible];
     return YES;
