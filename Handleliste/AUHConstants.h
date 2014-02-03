@@ -19,6 +19,7 @@ extern NSString *const ApplicationTitleConstant;
 extern NSString *const ApplicationItemsArchiveConstant;
 extern NSString *const AUHItemCellConstant;
 extern NSString *const DeleteAllCheckedButtonTitle;
+extern NSString *const GroupByShopButtonTitle;
 
 
 

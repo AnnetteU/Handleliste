@@ -109,6 +109,13 @@
 }
 
 /**
+ removeItems
+ */
+- (void)removeItems:(NSMutableIndexSet *)items{
+    [allItems removeObjectsAtIndexes:items];
+}
+
+/**
  moveItemAtIndex
  Reorder items
  */

@@ -154,11 +154,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Handleliste/AUHItemStore.m"
-            timestampString = "412696505.193028"
+            timestampString = "413128442.635552"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "163"
-            endingLineNumber = "163"
+            startingLineNumber = "170"
+            endingLineNumber = "170"
             landmarkName = "-setApplicationBadgeNumber"
             landmarkType = "5">
          </BreakpointContent>
@@ -170,44 +170,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Handleliste/AUHListViewController.m"
-            timestampString = "412869958.37475"
+            timestampString = "413128500.168615"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "237"
-            endingLineNumber = "237"
-            landmarkName = "-controller:didSaveItemWithName:andShop:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Handleliste/AUHListViewController.m"
-            timestampString = "412869958.37475"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "196"
-            endingLineNumber = "196"
-            landmarkName = "-tableView:didSelectRowAtIndexPath:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Handleliste/AUHListViewController.m"
-            timestampString = "412869958.37475"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "191"
-            endingLineNumber = "191"
-            landmarkName = "-tableView:didSelectRowAtIndexPath:"
+            startingLineNumber = "300"
+            endingLineNumber = "300"
+            landmarkName = "-deleteChecked:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

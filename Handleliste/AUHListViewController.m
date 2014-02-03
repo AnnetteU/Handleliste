@@ -45,16 +45,6 @@
                                                initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
                                                target:self action:@selector(addItem:)];
         [[self navigationItem] setRightBarButtonItem:rightbarButtonItem];
-        
-        // we want to add buttons to the toolbar
-        [[self navigationController] setToolbarHidden:NO];
-        
-        UIBarButtonItem *flexiableItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil];
-        UIBarButtonItem *item1 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:nil];
-        UIBarButtonItem *item2 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:nil];
-        
-        NSArray *items = [NSArray arrayWithObjects:item1, flexiableItem, item2, nil];
-        [[self navigationController] setToolbarItems:items];
     }
     return self;
 }
@@ -83,9 +73,16 @@
 
     UIBarButtonItem *deleteAllCheckedButtonItem = [[UIBarButtonItem alloc]
                                                    initWithTitle:DeleteAllCheckedButtonTitle
-                                                   style:UIBarButtonItemStylePlain target:self action:nil];
+                                                   style:UIBarButtonItemStylePlain target:self action:@selector(deleteChecked:)];
     
-    NSMutableArray *arr = [NSMutableArray arrayWithObjects:deleteAllCheckedButtonItem, nil];
+    UIBarButtonItem *flexibleItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil];
+    
+    UIBarButtonItem *groupByShopButtonItem = [[UIBarButtonItem alloc]
+                                                   initWithTitle:GroupByShopButtonTitle
+                                                   style:UIBarButtonItemStylePlain target:self action:@selector(groupByShop:)];
+
+    
+    NSMutableArray *arr = [NSMutableArray arrayWithObjects:deleteAllCheckedButtonItem, flexibleItem, groupByShopButtonItem, nil];
     [self setToolbarItems:arr animated:YES];
 }
 
@@ -237,7 +234,7 @@
     AUHItem *newItem = [[AUHItemStore sharedStore] createItem:name andShop:shop];
     
     // get last row in table
-    int lastRow = [[[AUHItemStore sharedStore] allItems] indexOfObject:newItem];
+    NSInteger lastRow = [[[AUHItemStore sharedStore] allItems] indexOfObject:newItem];
     NSIndexPath *newIndexPath = [NSIndexPath indexPathForRow:lastRow inSection:0];
     
     // insert new row
@@ -295,7 +292,40 @@
     [[self tableView] setEditing:![[self tableView] isEditing] animated:YES];
 }
 
+/**
+ deleteChecked
+ */
+- (void)deleteChecked:(id)sender{
+    
+    NSMutableArray *cellIndicesToBeDeleted = [[NSMutableArray alloc] init];
+    NSMutableIndexSet *indicesOfItemsToDelete = [[NSMutableIndexSet alloc] init];
+    
+    for (int i = 0; i < [[self tableView] numberOfRowsInSection:0]; i++) {
+        NSIndexPath *indexPath = [NSIndexPath indexPathWithIndex:i];
+        AUHItem *item = [[[AUHItemStore sharedStore] allItems] objectAtIndex:i];
+        
+        if ([item isChecked]) {
+            [cellIndicesToBeDeleted addObject:indexPath];
+            [indicesOfItemsToDelete addIndex:i];
+        }
+    }
+    
+    [[AUHItemStore sharedStore] removeItems:indicesOfItemsToDelete];
+    
+    [[self tableView] beginUpdates];
+    [[self tableView] deleteRowsAtIndexPaths:[NSArray arrayWithObject:cellIndicesToBeDeleted] withRowAnimation:UITableViewRowAnimationFade];
+    [[self tableView] endUpdates];
+    
+//    [[self tableView] deleteRowsAtIndexPaths:cellIndicesToBeDeleted
+//                     withRowAnimation:UITableViewRowAnimationLeft];
+}
 
+/**
+ groupByChecked
+ */
+- (void)groupByShop:(id)sender{
+
+}
 
 
 

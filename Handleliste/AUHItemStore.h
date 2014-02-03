@@ -19,6 +19,7 @@
 - (NSArray *)allItems;
 - (AUHItem *)createItem:(NSString *)name andShop:(NSString *)shop;
 - (void)removeItem:(AUHItem *)item;
+- (void)removeItems:(NSMutableIndexSet *)items;
 - (void)moveItemAtIndex:(int)from toIndex:(int)to;
 - (BOOL)saveChanges;
 - (void)loadItems;
