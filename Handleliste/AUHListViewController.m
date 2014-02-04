@@ -301,7 +301,8 @@
     NSMutableIndexSet *indicesOfItemsToDelete = [[NSMutableIndexSet alloc] init];
     
     for (int i = 0; i < [[self tableView] numberOfRowsInSection:0]; i++) {
-        NSIndexPath *indexPath = [NSIndexPath indexPathWithIndex:i];
+        
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:i inSection:0];
         AUHItem *item = [[[AUHItemStore sharedStore] allItems] objectAtIndex:i];
         
         if ([item isChecked]) {
@@ -310,14 +311,15 @@
         }
     }
     
-    [[AUHItemStore sharedStore] removeItems:indicesOfItemsToDelete];
+    // deleteRowsAtIndexPath takes an NSArray, need to convert from NSMutableArray
+    NSArray *arrayToDelete = [[NSArray alloc] initWithArray:cellIndicesToBeDeleted];
     
     [[self tableView] beginUpdates];
-    [[self tableView] deleteRowsAtIndexPaths:[NSArray arrayWithObject:cellIndicesToBeDeleted] withRowAnimation:UITableViewRowAnimationFade];
+    [[AUHItemStore sharedStore] removeItems:indicesOfItemsToDelete];
+    [[self tableView] deleteRowsAtIndexPaths:arrayToDelete withRowAnimation:UITableViewRowAnimationFade];
     [[self tableView] endUpdates];
     
-//    [[self tableView] deleteRowsAtIndexPaths:cellIndicesToBeDeleted
-//                     withRowAnimation:UITableViewRowAnimationLeft];
+    [[AUHItemStore sharedStore] saveChanges];
 }
 
 /**

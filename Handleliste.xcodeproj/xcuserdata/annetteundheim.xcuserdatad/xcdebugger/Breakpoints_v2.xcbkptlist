@@ -170,11 +170,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Handleliste/AUHListViewController.m"
-            timestampString = "413128500.168615"
+            timestampString = "413199344.403176"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "300"
-            endingLineNumber = "300"
+            startingLineNumber = "319"
+            endingLineNumber = "319"
             landmarkName = "-deleteChecked:"
             landmarkType = "5">
          </BreakpointContent>
